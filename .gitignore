@@ -1,1 +1,6 @@
-.icloud
+*.icloud
+*.aux
+*.fls
+*.log
+*.fdb_latexmk
+*.synctex.gz
