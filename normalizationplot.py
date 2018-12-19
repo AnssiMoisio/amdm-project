@@ -9,8 +9,8 @@ from kmeans import k_means
 import matplotlib.pyplot as plt
 
 path      = 'graphs/'
-file      = ['ca-GrQc.txt']
-k         = 2
+file      = ['Oregon-1.txt']
+k         = 5
 
 edgelist  = pd.read_csv(path + file[0], delimiter=' ', skiprows=1, header=None)
 G         = nx.from_pandas_edgelist(edgelist, source=0, target=1, create_using=nx.Graph())

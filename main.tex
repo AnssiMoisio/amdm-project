@@ -104,14 +104,27 @@ Kuvaajat:
 \begin{center}
 \includegraphics[height=10cm]{plot2.png}
 \end{center}
-\caption{The objective function as a function of the number of iterations of the algorithm. The eigenvectors are normalized here.}
+\caption{The objective function as a function of the number of iterations of the algorithm.
+The eigenvectors are normalized here. This figure is for the smallest graph ca-GrQc, with k=2.}
 \end{figure}
 
 \begin{figure}[htb]
-\begin{center}
+\begin{center} \label{normalized}
 \includegraphics[height=12cm]{normalization_plot.png}
 \end{center}
-\caption{Results for normalized eigenvectors or Laplacian matrix or both.}
+\caption{Results for normalized eigenvectors or Laplacian matrix or both
+This figure is for the smallest graph ca-GrQc, with k=2.}
+\end{figure}
+
+From Figure \ref{normalized} we can see that normalizing the eigenvectors
+makes the results stable. Normalizing the Laplacian matrix gives the best results.
+
+\begin{figure}[htb]
+\begin{center} \label{normalized}
+\includegraphics[height=12cm]{normalization_plot-oregonk5.png}
+\end{center}
+\caption{Results for normalized eigenvectors or Laplacian matrix or both.
+This figure is for the second smallest graph Oregon-1, with k=5.}
 \end{figure}
 
 \section{Conclusions}
