@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 path      = 'graphs/'
 file      = ['ca-GrQc.txt']
-k         = 2
+k         = 10
 
 edgelist  = pd.read_csv(path + file[0], delimiter=' ', skiprows=1, header=None)
 G         = nx.from_pandas_edgelist(edgelist, source=0, target=1, create_using=nx.Graph())
@@ -20,14 +20,16 @@ laplacian = sparse.csgraph.laplacian(adj_matr.values, normed=True)
 eigenvalues, eigenvectors = np.linalg.eig(laplacian)
 eigenvectors = normalize(eigenvectors.astype(np.float64))
 
-kmeans = KMeans(n_clusters=k).fit(eigenvectors)
+kmeans = KMeans(n_clusters=k, max_iter = 1, n_init=1).fit(eigenvectors)
 init_centers = kmeans.cluster_centers_ 
 
+n = 10
 
-phis = np.zeros(10)
+phis = np.zeros(n)
+best = np.zeros(n)
 j = 0
 for iterations in range(1, 100, 10):
-        kmeans = KMeans(n_clusters=k, max_iter=iterations, n_init=1, init=init_centers).fit(eigenvectors)
+        kmeans = KMeans(n_clusters=k, max_iter=iterations, init=init_centers).fit(eigenvectors)
 
         cut_edges = 0
         for i in range(edgelist.shape[0]):
@@ -40,11 +42,13 @@ for iterations in range(1, 100, 10):
                 if (value < smallest):
                         smallest = value
         phis[j] = cut_edges / smallest
+        best[j] = np.amin(phis[:j+1])
         j += 1
 
 print(phis)
 
-plt.plot([1,11,21,31,41,51,61,71,81,91], phis,  markerfacecolor='None')
-plt.xlabel('Max iterations')
+plt.plot([1,11,21,31,41,51,61,71,81,91], best,  markerfacecolor='None')
+plt.xlabel('Max iterations per single run of k-means algorithm')
 plt.ylabel('Objective function')
+plt.title('k = 10')
 plt.show()
