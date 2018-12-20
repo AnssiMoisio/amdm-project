@@ -37,22 +37,17 @@ def calculatePhi(graph, k):
 
     return phi
 
-# phi1 = calculatePhi('ca-GrQc.txt', 2)
-# print(phi1)
-# phi2 = calculatePhi('Oregon-1.txt', 5)
-# print(phi2)
-# phi3 = calculatePhi('soc-Epinions1.txt', 10)
-# print(phi3)
-# phi4 = calculatePhi('web-NotreDame.txt', 20)
-# print(phi4)
-# phi5 = calculatePhi('roadNet-CA', 50)
-# print(phi5)
+phi1 = calculatePhi('ca-GrQc.txt', 2)
+print(phi1)
+phi2 = calculatePhi('Oregon-1.txt', 5)
+print(phi2)
+phi3 = calculatePhi('soc-Epinions1.txt', 10)
+print(phi3)
+phi4 = calculatePhi('web-NotreDame.txt', 20)
+print(phi4)
+phi5 = calculatePhi('roadNet-CA', 50)
+print(phi5)
 
-phi1 = 2
-phi2 = 3
-phi3 = 34
-phi4 = 22
-phi5 = 99
 
 
 plt.plot(phi1, marker='.',color='red', label='ca-GrQc')

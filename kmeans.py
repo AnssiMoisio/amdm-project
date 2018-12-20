@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from IPython.display import display
 import numpy as np
+import math
 
 def plotting(data, centroids=None, clusters=None):
     # this function will later on be used for plotting the clusters and centroids.
@@ -55,15 +56,17 @@ def assign_points(data, centroids):
     #OUTPUT: N x 1 array of cluster assignments in {0,...,k-1}.
     clusters = np.zeros(data.shape[0], dtype=np.int32)
     cluster_sizes = np.zeros(centroids.shape[0], dtype=np.int32)
-    distance_matrix = np.ndarray((data.shape[0], centroids.shape[0]))
     for i in range(data.shape[0]):
         distances = np.zeros(centroids.shape[0], dtype=np.int32)
         for j in range(centroids.shape[0]):
             distances[j] = np.linalg.norm(data[i] - centroids[j])
 
-        clusters[i] = np.argmin(distances)
+        minimum = np.argmin(distances)
+        if (cluster_sizes[minimum] > data.shape[0] / 2):
+            np.partition(distances, 1)[1]
+        else:
+            clusters[i] = minimum
         cluster_sizes[clusters[i]] += 1
-        distance_matrix[i] = distances
 
     return clusters
 
