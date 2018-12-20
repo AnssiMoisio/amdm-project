@@ -84,9 +84,17 @@ We used the following loss function:
 Where the nominator corresponds to the amount of cut edges and the denominator is the size of the smallest cluster. 
 
 \section{Literature review}
-Daniel Spielman \cite{speilman} has written a good introduction to spectral graph theory.
+Daniel Spielman \cite{spielman} has written a good introduction to spectral graph theory.
 Spielman exaplains the basic algorithm of computing the laplacian of the adjacency
 matrix and then taking the eigenvectors of the laplacian and using these to form the clusters.
+
+Buluc et al. have reviewed the literature on graph partitioning
+in their paper \textit{Recent Advances in Graph Partitioning} \cite{buluc}.
+Spectral algorithms are just one of the classes of methods that can be used
+in graph partitioning. Spectral graph partitioning is based on linear algebra.
+Other methods such as graph growing uses breadth first search or similar graph algorithms.
+Still other methods may use geometric techniques\cite{buluc}.
+
 
 %----------------------------------------------------------------------------------------
 %	PROBLEM 1
@@ -190,7 +198,12 @@ Weird stuff
 \begin{thebibliography}{99}
 
 \bibitem{spielman} Daniel Spielman, Spectral Graph Theory, Chapter 16,
-	\url{http://www.cs.yale.edu/homes/spielman/PAPERS/SGTChapter.pdf}
+	\url{http://www.cs.yale.edu/homes/spielman/PAPERS/SGTChapter.pdf}.
+
+\bibitem{buluc} Aydın Buluç, Henning Meyerhenke, Ilya Safro, Peter Sanders, Christian Schulz,
+	2015, \textit{Recent Advances in Graph Partitioning},
+	\url{https://arxiv.org/pdf/1311.3144.pdf}.
+
 
 
 
