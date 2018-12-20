@@ -20,6 +20,8 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
 
 \input{structure.tex} % Include the file specifying the document structure and custom commands
 
@@ -40,7 +42,7 @@
 \date{Algorithmic Methods of Data Mining --- \today} % University, school and/or department name(s) and a date
 
 %----------------------------------------------------------------------------------------
-
+\renewcommand{\baselinestretch}{1.5}
 \begin{document}
 
 \maketitle % Print the title
@@ -48,6 +50,7 @@
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
+
 
 \section*{Introduction} % Unnumbered section
 
@@ -82,7 +85,7 @@ Where the nominator corresponds to the amount of cut edges and the denominator i
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
 
-\section{Implementation} % Numbered section
+\section{Implementation} % Numbered sections
 
 We are using Python 3 as our implementation language along with the following packages: scikit-learn, networkx, numpy, scipy and pandas. We intend to use spectral algorithms for this problem.
 %------------------------------------------------
@@ -101,15 +104,8 @@ Every row represents a node in the graph. Now that the graph has been converted 
 %----------------------------------------------------------------------------------------
 
 \section{Results}
-Kuvaajat: 
-\begin{itemize}
-	\item ${\phi(max\ iters)}$
-	\item ${\phi_{min}(number\ of\ sampled\ kmeans\ results)}$
-	\item Effect of normalization on results
-\end{itemize}
 
 \begin{figure}[htb]
-
 \begin{center} 
 \includegraphics[height=10cm]{plot2.png}
 \end{center}
@@ -122,36 +118,55 @@ From Figure \ref{plot1} we can see that iterating the algorithm with
 new initializations can make the results better. For the smallest
 network the differences are not large (from 3.26 to 3.20) but with the
 larger networks there is noticeable differences (see Figure \ref{normalized2}).
+\clearpage
 
 \begin{figure}[htb]
 \begin{center} 
-\includegraphics[height=12cm]{normalization_plot.png}
+\includegraphics[height=9.5cm]{normalization_plot.png}
 \end{center}
 \caption{Results for normalized eigenvectors or Laplacian matrix or both
 This figure is for the smallest graph ca-GrQc, with k=2.}
 \label{normalized}
+\begin{center} 
+	\includegraphics[height=9.5cm]{normalization_plot-oregonk5.png}
+	\end{center}
+	\caption{Results for normalized eigenvectors or Laplacian matrix or both.
+	This figure is for the second smallest graph Oregon-1, with k=5.}
+	\label{normalized2}
 \end{figure}
 
-
+\clearpage
+We wanted to see that to what degree does normalization affect the end result.
+Our program has two boolean parameters which normalize different parts of the numerical
+data: the laplacian matrix and the eigenvector matrix. These parameters give us a total of 
+four different permutations. We decided to plot the objective function with every parameter 
+combination as a function of iterations. 
 
 From Figure \ref{normalized} we can see that normalizing the eigenvectors
-makes the results stable. Normalizing the Laplacian matrix gives the best results and
+makes the results stable in the smallest graph. Normalizing the Laplacian matrix gives the best results and
 normalizing the eigenvectors can actually make the results somewhat worse than
 not normalizing anything.
 
-\begin{figure}[htb]
-\begin{center} 
-\includegraphics[height=12cm]{normalization_plot-oregonk5.png}
-\end{center}
-\caption{Results for normalized eigenvectors or Laplacian matrix or both.
-This figure is for the second smallest graph Oregon-1, with k=5.}
-\label{normalized2}
-\end{figure}
+As can be seen from figure \ref{normalized2}, 
+the unaltered data performs quite poorly in graph Oregon-1 when compared with any normalization. Normalizing 
+the eigenvectors generally yields better results with this graph given that the sample
+size is big enough and normalizing both the Laplacian matrix and the eigenvector matrix
+gave a slightly worse performance compared to only normalizing eigenvectors. 
+
+Looking at figures \ref{normalized} and \ref{normalized2}, normalizing the laplacian matrix will be sufficient
+given that enough iterations are applied in the clustering. Normalizing both Laplacian and the eigenvector
+matrix will result in faster convergence.
+
+These graphs show us, however, that any data normalization will generally yield better results when 
+compared to the raw data. This is related to the objective function as the data to be clustered
+can and usually is in a quite unbalanced state and in our case it results in a small denominatitor, making
+the objective function larger, even when the amount of cut edge count is a little smaller than after
+normalization.
 
 \clearpage
 \section{Conclusions}
 
-Conclusions
+Weird stuff
 %----------------------------------------------------------------------------------------
 
 \end{document}
