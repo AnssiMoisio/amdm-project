@@ -30,10 +30,10 @@
 \title{Programming project - Graph Partitioning} % Title of the assignment
 
 \author{
-  Anssi, Moisio\\
+  Anssi Moisio\\
   \texttt{anssi.moisio@aalto.fi}
   \and
-  Nikolas, Erkinheimo\\
+  Nikolas Erkinheimo\\
   \texttt{nikolas.erkinheimo@aalto.fi}
 }
 
@@ -51,15 +51,23 @@
 
 \section*{Introduction} % Unnumbered section
 
-The topic of this programming exercise is graph partitioning. The datasets being used are provided by SNAP (Stanford Network Analysis project). We will use the following five undirected networks:
+The topic of this programming exercise is graph partitioning.
+The datasets being used are provided by SNAP (Stanford Network Analysis project).
+We will use the following five undirected networks:
 
 \begin{itemize}
-	\item ca-AstroPh
-	\item ca-CondMat
-	\item ca-GrQc
-	\item ca-HepPh
-	\item ca-HepTh
+	\item ca-GrQc 
+	\item Oregon-1
+	\item soc-Epinions1
+	\item web-NotreDame
+	\item roadNet-CA
 \end{itemize}
+
+The networks have substantial size differences: the amount of vertices range from
+about 4000 (ca-GrQc) to about 2000000 (roadNet-CA). We will be using mostly
+the two smallest graphs when validating our algorithms to save time.
+The graphs have defined values of k (numbers of clusters), that will be used in
+the competition, from 2 to 50. We will use these same k values throughout the project.
 
 Graph partitioning is a classical NP-hard problem which means polynomial time algorithms for this problem may not even exist and at the very least have not been found yet. We will use spectral algorithms. First, we will generate the Laplacian matrix of all of the graphs after which we calculate the corresponding eigenvectors. We will then apply a clustering algorithm to these eigenvectors to partition the nodes into sets.
 
@@ -101,32 +109,46 @@ Kuvaajat:
 \end{itemize}
 
 \begin{figure}[htb]
-\begin{center}
+
+\begin{center} 
 \includegraphics[height=10cm]{plot2.png}
 \end{center}
 \caption{The objective function as a function of the number of iterations of the algorithm.
 The eigenvectors are normalized here. This figure is for the smallest graph ca-GrQc, with k=2.}
+\label{plot1}
 \end{figure}
 
+From Figure \ref{plot1} we can see that iterating the algorithm with
+new initializations can make the results better. For the smallest
+network the differences are not large (from 3.26 to 3.20) but with the
+larger networks there is noticeable differences (see Figure \ref{normalized2}).
+
 \begin{figure}[htb]
-\begin{center} \label{normalized}
+\begin{center} 
 \includegraphics[height=12cm]{normalization_plot.png}
 \end{center}
 \caption{Results for normalized eigenvectors or Laplacian matrix or both
 This figure is for the smallest graph ca-GrQc, with k=2.}
+\label{normalized}
 \end{figure}
 
+
+
 From Figure \ref{normalized} we can see that normalizing the eigenvectors
-makes the results stable. Normalizing the Laplacian matrix gives the best results.
+makes the results stable. Normalizing the Laplacian matrix gives the best results and
+normalizing the eigenvectors can actually make the results somewhat worse than
+not normalizing anything.
 
 \begin{figure}[htb]
-\begin{center} \label{normalized}
+\begin{center} 
 \includegraphics[height=12cm]{normalization_plot-oregonk5.png}
 \end{center}
 \caption{Results for normalized eigenvectors or Laplacian matrix or both.
 This figure is for the second smallest graph Oregon-1, with k=5.}
+\label{normalized2}
 \end{figure}
 
+\clearpage
 \section{Conclusions}
 
 Conclusions
