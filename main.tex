@@ -22,6 +22,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{url}
 
 \input{structure.tex} % Include the file specifying the document structure and custom commands
 
@@ -81,6 +82,12 @@ We used the following loss function:
 \end{equation}
 
 Where the nominator corresponds to the amount of cut edges and the denominator is the size of the smallest cluster. 
+
+\section{Literature review}
+Daniel Spielman \cite{speilman} has written a good introduction to spectral graph theory.
+Spielman exaplains the basic algorithm of computing the laplacian of the adjacency
+matrix and then taking the eigenvectors of the laplacian and using these to form the clusters.
+
 %----------------------------------------------------------------------------------------
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
@@ -88,6 +95,14 @@ Where the nominator corresponds to the amount of cut edges and the denominator i
 \section{Implementation} % Numbered sections
 
 We are using Python 3 as our implementation language along with the following packages: scikit-learn, networkx, numpy, scipy and pandas. We intend to use spectral algorithms for this problem.
+\newline\newline
+\textbf{The contributions of each team member:}\newline
+The project was done mostly with both of us being in the same room, which means the
+planning and solution was very much a team effort with no clear division of work. That being said,
+there was some tasks that were mostly done by one team member. Nikolas wrote most of the code
+for the algorithm and Anssi wrote the code for plotting the figures. The project
+report was written mostly by Nikolas. Anssi wrote some of the introduction and
+describing the figures.
 %------------------------------------------------
 
 \subsection{Data loading and preprocessing}
@@ -167,6 +182,20 @@ normalization.
 \section{Conclusions}
 
 Weird stuff
+
+
+% Bibliography
+%----------------------------------------------------------------------------------------
+
+\begin{thebibliography}{99}
+
+\bibitem{spielman} Daniel Spielman, Spectral Graph Theory, Chapter 16,
+	\url{http://www.cs.yale.edu/homes/spielman/PAPERS/SGTChapter.pdf}
+
+
+
+\end{thebibliography}
+
 %----------------------------------------------------------------------------------------
 
 \end{document}
